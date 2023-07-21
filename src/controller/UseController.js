@@ -28,7 +28,7 @@ const Login = require("../models/login");
 const { generateToken } = require("../../common/token");
 const dotenv = require("dotenv");
 const sendEmail = require("./utiles/sendEmail");
-const Copyright = require("../models/copyright");
+// const Copyright = require("../models/copyright");
 dotenv.config();
 // const mongoose=require("mongoose")
 // const fs=require('fs')
@@ -219,7 +219,6 @@ const loadHome = async (req, res) => {
   }
 };
 
-
 const logoutdata = async (req, res) => {
   try {
     res.cookie("token", "", {
@@ -372,7 +371,28 @@ const applyPost = asynchandler(async (req, res) => {
   const AppApi = await Apply.create(req.body);
   const result = await AppApi.save();
 
+  // // Reset Email
+  const msg = `
+  Dear Mahakal Cooling Tower Team,
+   Name :${req.body.name}
+   Email : ${req.body.email}
+   Mobile No : ${req.body.mobileno}
+   Experience : ${req.body.exprerience}
+   Current CTC :${req.body.current_ctc}
+   Expected : ${req.body.Expected_ctc}
+   City : ${req.body.city}
+   State : ${req.body.state}
+   Address : ${req.body.address}
+
+   Thanking you,   
+    `;
+  const subject =
+    "An Application Inquiry about Mahakal Cooling Tower Products and Services";
+  const send_to = "mahakalcoolingtower@gmail.com";
+  // const sent_from = ;
+
   if (result) {
+    await sendEmail(subject, msg, send_to);
     return res.status(200).json({ msg: result });
   } else {
     return res.status(400).json({ msg: "error" });
@@ -423,10 +443,26 @@ const partsDetails = asynchandler(async (req, res) => {
 
 // Contact Post api
 const contactPost = asynchandler(async (req, res) => {
+  // Reset Email
+  const msg = `
+  Dear Sir/Ma'am,
+  Name  : ${req.body.name}
+  Email : ${req.body.email}
+  Mobile No. :${req.body.mobileno} 
+  Company Name : ${req.body.companyname}
+  Subject : ${req.body.subject}
+  Message :${req.body.message}
+  Thanking you,  
+    `;
+  const subject = "An Application   ";
+  const send_to = "mahakalcoolingtower@gmail.com";
+
   const ContApi = await Contact.create(req.body);
   const result = await ContApi.save();
-
+  // const sent_from = ;
   if (result) {
+    await sendEmail(subject, msg, send_to);
+
     return res.status(200).json({ result });
   } else {
     return res.status(400).json({ msg: "error" });
@@ -465,23 +501,29 @@ const enquieryPost = asynchandler(async (req, res) => {
   // } = req.body;
   // console.log("req.body", req.body);
   const EnqPostapi = await Enquiry.create(req.body);
-               await EnqPostapi.save();
+  await EnqPostapi.save();
 
   // // Reset Email
   const msg = `
-    Hello ${req.body.firstname} ${req.body.lastname}
-  `;
-  const subject = "An Application from mahakal cooling tower";
-  const send_to = req.body.email;
+  Dear Mahakal Cooling Tower Team,
+  
+  
+  I hope this email finds you well. My name is ${req.body.firstname}, and I am writing on behalf of my company ${req.body.companyname}. We are currently in the process of exploring options for cooling tower solutions to enhance the efficiency and reliability of our industrial processes.
+  After conducting extensive research, we came across Mahakal Cooling Tower and were impressed by your reputation in the industry.
+  
+  Thanking you,   
+    `;
+  const subject =
+    "An Application Inquiry about Mahakal Cooling Tower Products and Services";
+  const send_to = "mahakalcoolingtower@gmail.com";
   // const sent_from = ;
 
   try {
     await sendEmail(subject, msg, send_to);
-
     res.status(200).json({ success: true, message: "data inserted" });
   } catch (error) {
-    res.status(500);
-    throw new Error("Email not sent, please try again");
+    return res.status(500).json({ success: false });
+    // throw new Error("Email not sent, please try again");
   }
 });
 
@@ -492,25 +534,6 @@ const subscriptionPost = asynchandler(async (req, res) => {
     return res.status(200).json({ msg: result });
   } else {
     return res.status(400).json({ msg: "error" });
-  }
-});
-
-const copyright = asynchandler(async (req, res) => {
-  try {
-    const { year } = req.body;
-    if (!year) {
-      return res.status(201).json({ msg: "please enter year" });
-    } else if (year.length < 4 || year.length > 4) {
-      return res.status(201).json({ msg: "please enter year" });
-    }
-    const CopyrightData = Copyright({year});
-    const result = await CopyrightData.save();
-
-    if (result) {
-      return res.status(200).json({ msg: result });
-    }
-  } catch (error) {
-    return res.status(400).json({ msg: error });
   }
 });
 
@@ -545,5 +568,8 @@ module.exports = {
   verifyLogin,
   logoutdata,
   newsdetail,
-  copyright,
 };
+
+// Apply
+
+// Contact us

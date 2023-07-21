@@ -17,6 +17,8 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/38.1.1/classic/ckeditor.js"></script>
+    
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -436,9 +438,19 @@
             
                             <div class="mb-3 mt-3 row g-9 align-items-center">
                                 <div class="col col-lg-2"><label class="form-label">Post</label></div>
-                                <div class="col"><input type="text" rows="10" class="editor form-control Page_Details" name="post" 
-                                      value="<%=x.post%>" placeholder="Post any information"></textarea></div>
+                                <div class="col">
+                                    <input type="text" rows="10" class="editor form-control Page_Details" name="post" 
+                                      value="<%=x.post%>" placeholder="Post any information">
+                                    </textarea></div>
+                                    <!-- <div><%- x.post %></div> -->
+                                    <!-- <textarea name="editor1"></textarea> -->
+                                    <!-- <div id="editor"> -->
+                                        <!-- <%=x.post%> -->
+                                    <!-- </div> -->
+
                             </div> 
+
+                           
             
                             
             
@@ -496,6 +508,11 @@
     </div>
   </div>
   <script>
+    ClassicEditor
+		.create( document.querySelector( '#editor' ) )
+		.catch( error => {
+			console.error( error );
+		} );
   const logout = document.getElementById("logout");
   logout.addEventListener("click", async(e)=>{
   e.preventDefault();
@@ -530,6 +547,8 @@
   
   
   </script>
+  
+  <!-- <script src="./node_modules/ckeditor/ckeditor.js"></script> -->
 
     <!-- Bootstrap core JavaScript-->
     <script src="/vendor/jquery/jquery.min.js"></script>
@@ -554,7 +573,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Mhakal Cooling Tower 2023</span>
+            <span>Copyright &copy;    <strong> <span>Mahakal Cooling Tower <script>document.write(new Date().getFullYear())</script></span></strong></span>
         </div>
     </div>
 </footer>

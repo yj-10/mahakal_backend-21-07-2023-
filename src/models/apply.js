@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const applyModel = mongoose.Schema({
   name: {
-    type: String,
-    require: [true, "please Enter Your Name"],
+  type: String,
+  require: [true, "please Enter Your Name"],
   },
   email: {
     type: String,

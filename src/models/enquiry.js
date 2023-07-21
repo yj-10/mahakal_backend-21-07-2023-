@@ -14,7 +14,7 @@ const enquiryModel = mongoose.Schema({
   },
   email: {
     type: String,
-    unique: true,
+    // unique: true,
     trim: true,
     require: [true, "please Enter your Email"],
     match: [

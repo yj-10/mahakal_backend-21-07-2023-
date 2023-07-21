@@ -25,7 +25,7 @@ const {
   productRCCTower,
   enquieryAdd,
   enquieryPost,
-  copyright
+ 
 } = require("../controller/UseController");
 const router = express.Router();
 const session = require("express-session")
@@ -137,6 +137,4 @@ router.get("/SliderGet", sliderDetail);
 router.post("/SubPost", subscriptionPost);
 
 
-
-router.post('/copyright',copyright)
 module.exports = router;
