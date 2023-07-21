@@ -464,12 +464,12 @@ const enquieryPost = asynchandler(async (req, res) => {
   //   agree,
   // } = req.body;
   // console.log("req.body", req.body);
-  // const EnqPostapi = await Enquiry.create(req.body);
-  // const result = await EnqPostapi.save();
+  const EnqPostapi = await Enquiry.create(req.body);
+               await EnqPostapi.save();
 
   // // Reset Email
   const msg = `
-    Hello ${req.body.firstname}${req.body.lastname}
+    Hello ${req.body.firstname} ${req.body.lastname}
   `;
   const subject = "An Application from mahakal cooling tower";
   const send_to = req.body.email;
@@ -478,7 +478,7 @@ const enquieryPost = asynchandler(async (req, res) => {
   try {
     await sendEmail(subject, msg, send_to);
 
-    res.status(200).json({ success: true, message: "Email Sent" });
+    res.status(200).json({ success: true, message: "data inserted" });
   } catch (error) {
     res.status(500);
     throw new Error("Email not sent, please try again");
