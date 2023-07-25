@@ -113,7 +113,7 @@ const upload = multer({
       cb(null, true);
     } else {
       cb(null, false);
-      return cb(new Error("Only jpeg, jpg, png, gif images allow"));
+      // return cb(new Error("Only jpeg, jpg, png, gif images allow"));
     }
   },
 });
@@ -124,7 +124,7 @@ var videoupload = multer({
       return cb(null, true);
     } else {
       cb(null, false);
-      return cb(new Error("only videos are allowed"));
+      // return cb(new Error("only videos are allowed"));
     }
   },
 });
@@ -138,7 +138,7 @@ var resumeupload = multer({
       return cb(null, true);
     } else {
       cb(null, false);
-      return cb(new Error("only resumes are allowed"));
+      // return cb(new Error("only resumes are allowed"));
     }
   },
 });
