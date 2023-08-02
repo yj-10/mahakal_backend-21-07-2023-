@@ -62,6 +62,7 @@ const URL2 = "http://127.0.0.1:7000/video/"
 // for contoller files
 const userController = require("../controller/UseController");
 const { generateToken } = require("../../common/token");
+const sendEmail = require("../controller/utiles/sendEmail");
 
 routes.get("/", auth.isLogout, userController.loginLoad);
 routes.get("/login", userController.loginLoad);
@@ -1704,8 +1705,27 @@ routes.post(
         resume: URL1 + req.file.filename,
       });
 
+      const msg = `
+      Dear Sir/Ma'am,
+      Name  : ${req.body.name}
+      Email : ${req.body.email}
+      Mobile No. :${req.body.mobileno} 
+      Experience : ${req.body.exprerience}
+      Current Ctc : ${req.body.current_ctc}
+      Expected CTC :${req.body.Expected_ctc}
+      City :${req.body.city}
+      State :${req.body.state}
+      Address:${req.body.address}
+      resume: ${URL1 + req.file.filename}
+   
+      Thanking you,  
+        `;
+      const subject = "An Application ";
+      const send_to = "mahakalcoolingtower@gmail.com";
+
       try {
         // res.redirect("/");
+         sendEmail(subject, msg, send_to);
         console.log(req.file);
         res.status(200).json({ message: "data added successfully" });
       } catch (e) {

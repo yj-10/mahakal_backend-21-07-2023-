@@ -28,6 +28,7 @@ const Login = require("../models/login");
 const { generateToken } = require("../../common/token");
 const dotenv = require("dotenv");
 const sendEmail = require("./utiles/sendEmail");
+const URL1 = "http://127.0.0.1:7000/resume/";
 // const Copyright = require("../models/copyright");
 dotenv.config();
 // const mongoose=require("mongoose")
@@ -368,6 +369,7 @@ const applyDetail = asynchandler(async (req, res) => {
 
 // Apply Post api
 const applyPost = asynchandler(async (req, res) => {
+  console.log("hello")
   const AppApi = await Apply.create(req.body);
   const result = await AppApi.save();
 
