@@ -41,7 +41,7 @@ const Career = require("../models/career");
 const apply = require("../models/apply");
 const video = require("../models/video");
 const Parts = require("../models/parts");
-const news = require('../models/news')
+const news = require("../models/news");
 const Subscription = require("../models/Subscription");
 // const bcrypt = require('bcrypt')
 const auth = require("../../middleware/auth");
@@ -51,7 +51,7 @@ const config = require("../../config/config");
 
 const URL = "http://127.0.0.1:7000/images/";
 const URL1 = "http://127.0.0.1:7000/resume/";
-const URL2 = "http://127.0.0.1:7000/video/"
+const URL2 = "http://127.0.0.1:7000/video/";
 
 // const storage = multer.diskStorage({
 //   destination: "./public/images/",
@@ -317,7 +317,7 @@ routes.get("/video-page", (req, res) => {
 });
 
 routes.get("/edit-page-privacypolicies/:id", (req, res) => {
-  Policies.findOne({_id: req.params.id })
+  Policies.findOne({ _id: req.params.id })
     .then((x) => {
       res.render("edit-page-privacypolicies", { x });
     })
@@ -518,7 +518,6 @@ routes.get("/add-page-project", (req, res) => {
 routes.get("/add-page-gallery", (req, res) => {
   res.render("add-page-gallery");
 });
-
 
 routes.get("/add-page-news", (req, res) => {
   res.render("add-page-news");
@@ -929,7 +928,7 @@ routes.post("/edit-page-video/:id", videoupload.single("video"), (req, res) => {
           $set: {
             title: req.body.title,
 
-            video: URL2+req.file.filename,
+            video: URL2 + req.file.filename,
           },
         }
       )
@@ -1186,7 +1185,6 @@ routes.post("/edit-page-product5/:id", upload.single("image"), (req, res) => {
   }
 });
 
-
 routes.post("/edit-page-news/:id", upload.single("image"), (req, res) => {
   if (!req.file) {
     news
@@ -1206,7 +1204,7 @@ routes.post("/edit-page-news/:id", upload.single("image"), (req, res) => {
         res.redirect("/news");
       });
   } else {
-   news
+    news
       .updateOne(
         {
           _id: req.params.id,
@@ -1225,15 +1223,6 @@ routes.post("/edit-page-news/:id", upload.single("image"), (req, res) => {
       });
   }
 });
-
-
-
-
-
-
-
-
-
 
 routes.post("/edit-page-gallery/:id", upload.single("image"), (req, res) => {
   if (!req.file) {
@@ -1706,7 +1695,7 @@ routes.post(
       });
 
       const msg = `
-      Dear Sir/Ma'am,
+      Dear Mahakal Cooling Tower Team,
       Name  : ${req.body.name}
       Email : ${req.body.email}
       Mobile No. :${req.body.mobileno} 
@@ -1718,14 +1707,15 @@ routes.post(
       Address:${req.body.address}
       resume: ${URL1 + req.file.filename}
    
-      Thanking you,  
+      Thanks & Regards
         `;
-      const subject = "An Application ";
+      const subject =
+        "An Application to seeking good opportunity in Mahakal Cooling Towers ";
       const send_to = "mahakalcoolingtower@gmail.com";
 
       try {
         // res.redirect("/");
-         sendEmail(subject, msg, send_to);
+        sendEmail(subject, msg, send_to);
         console.log(req.file);
         res.status(200).json({ message: "data added successfully" });
       } catch (e) {
@@ -1787,7 +1777,7 @@ routes.post("/add-page-video", videoupload.single("video"), (req, res) => {
   if (req.file) {
     video.create({
       title: req.body.title,
-      video: URL2 + req.file.filename
+      video: URL2 + req.file.filename,
     });
     try {
       res.redirect("/video-page");
@@ -1802,7 +1792,7 @@ routes.post("/add-page-news", upload.single("image"), (req, res) => {
     news.create({
       title: req.body.title,
       description: req.body.description,
-      image: URL + req.file.filename
+      image: URL + req.file.filename,
     });
     try {
       res.redirect("/news");
@@ -1812,7 +1802,6 @@ routes.post("/add-page-news", upload.single("image"), (req, res) => {
     }
   }
 });
-
 
 routes.post("/add-page-slide", upload.single("photo"), (req, res) => {
   if (req.file) {
@@ -2090,7 +2079,6 @@ routes.post("/delete-page-product5/:id", (req, res) => {
     res.redirect("/product5");
   });
 });
-
 
 routes.post("/delete-page-news/:id", (req, res) => {
   news.findOneAndDelete({ _id: req.params.id }).then((x) => {

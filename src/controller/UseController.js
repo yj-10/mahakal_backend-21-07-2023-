@@ -369,7 +369,7 @@ const applyDetail = asynchandler(async (req, res) => {
 
 // Apply Post api
 const applyPost = asynchandler(async (req, res) => {
-  console.log("hello")
+  console.log("hello");
   const AppApi = await Apply.create(req.body);
   const result = await AppApi.save();
 
@@ -447,16 +447,20 @@ const partsDetails = asynchandler(async (req, res) => {
 const contactPost = asynchandler(async (req, res) => {
   // Reset Email
   const msg = `
-  Dear Sir/Ma'am,
+  Dear Mahakal Cooling tower team,
   Name  : ${req.body.name}
   Email : ${req.body.email}
   Mobile No. :${req.body.mobileno} 
   Company Name : ${req.body.companyname}
   Subject : ${req.body.subject}
   Message :${req.body.message}
-  Thanking you,  
+
+  Thanks & Regards 
+Client Name : ${req.body.name},
+Client Email : ${req.body.email},
+Client Number : ${req.body.mobileno}  
     `;
-  const subject = "An Application   ";
+  const subject = "An Application to contact with mahakal cooling towers team ";
   const send_to = "mahakalcoolingtower@gmail.com";
 
   const ContApi = await Contact.create(req.body);
@@ -509,11 +513,28 @@ const enquieryPost = asynchandler(async (req, res) => {
   const msg = `
   Dear Mahakal Cooling Tower Team,
   
-  
-  I hope this email finds you well. My name is ${req.body.firstname}, and I am writing on behalf of my company ${req.body.companyname}. We are currently in the process of exploring options for cooling tower solutions to enhance the efficiency and reliability of our industrial processes.
-  After conducting extensive research, we came across Mahakal Cooling Tower and were impressed by your reputation in the industry.
-  
-  Thanking you,   
+Name: ${req.body.firstname},
+LastName:${req.body.lastname},
+Company Name: ${req.body.companyname}  ,
+Email:${req.body.email},
+Mobile No. : ${req.body.mobileno},
+Postal Code : ${req.body.postalcode},
+Country : ${req.body.country},
+City : ${req.body.City},
+Market Type : ${req.body.Markettype},
+Job Type : ${req.body.jobtype},
+Company Type : ${req.body.Companytype},
+SerialNo : ${req.body.serialno},
+Message : ${req.body.message},
+I am Looking : ${req.body.Iamlookingfor},
+Agree : ${req.body.agree}
+
+
+Thanks & Regards 
+Client Name : ${req.body.firstname},
+Client Email : ${req.body.email},
+Client Number : ${req.body.mobileno}
+ 
     `;
   const subject =
     "An Application Inquiry about Mahakal Cooling Tower Products and Services";
