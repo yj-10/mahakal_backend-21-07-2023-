@@ -28,7 +28,6 @@
     ></script>
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet" />
-
   </head>
 
   <body id="page-top">
@@ -468,21 +467,144 @@
                     <label class="form-label">Post</label>
                   </div>
                   <div class="col">
-                    <!-- <textarea rows="10" class="editor form-control Page_Details" name="post"
-                    placeholder="Post any information"></textarea> -->
+                    <!-- <script>
+                      function f1(e){
+                       let val = e.value;
+                        document.getElementById("postdat").style.fontSize = val + "px"
+                      }
+                    </script> -->
+                    <!-- <textarea id="text_editor"  name="text_editor"></textarea> -->
+                    <!-- <input type="number" onchange="f1(this)" value="16" min="1" max="100"> -->
                     <textarea
                       rows="10"
-                      class="editor form-control Page_Details"
-                      placeholder="Post any information"
+                      class="form-control Page_Details"
                       name="post"
-                      id="post"
-                      rows="10"
-                      cols="80"
-                    >
-                    </textarea>
+                      id="postdat"
+                      placeholder="Post any information"
+                    ></textarea>
+                    <!-- <script>
+                      CKEDITOR.on("instanceCreated", function (e) {
+                        e.editor.on("contentDom", function () {
+                          e.editor.document.on("keyup", function (event) {
+                            var str = CKEDITOR.instances["editor1"].getData();
+                            document.getElementById("mirror1").innerHTML = str;
+                          });
+                        });
+                      });
+                    </script> -->
+
+                    <!-- <div id="editor"> -->
+
+                    <!-- </div> -->
+                    <!-- <script src="https://cdn.tiny.cloud/1/bvdvf53vraveljlny0wggs5mmmckb7s4p8vq5ljahipt1kam/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> -->
                     <!-- script -->
-                    <script src="./ckeditor.js"></script>          
+                    <!-- <script>
+                      tinymce.init({
+                        selector: 'post',
+                        plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+                        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                        tinycomments_mode: 'embedded',
+                        tinycomments_author: 'Author name',
+                        mergetags_list: [
+                          { value: 'First.Name', title: 'First Name' },
+                          { value: 'Email', title: 'Email' },
+                        ],
+                        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+                      });
+                    </script> -->
+                    <script src="./ckeditor/ckeditor.js"></script>
+                    <script>
+                      const editor = CKEDITOR.replace("post", {
+                        autoGrow_onStartup: true,
+                        enterMode: CKEDITOR.ENTER_BR,
+                        FullPage: false,
+                        allowedContent: true,
+                        ProtectedTags: "html|head|body|h1",
+                      });
+
+
+                      
+                    </script>
+                    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script> -->
+                    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/38.1.1/classic/ckeditor.js"></script> -->
+                    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/38.1.1/classic/ckeditor.js"></script> -->
+                    <!-- <script> -->
+                    <!-- // CKEDITOR.replaceAll("post", {
+                      //   extraAllowedContent: "/(\[##.+?##\])/"
+                      // });
+
+                      // CKEDITOR.on("instanceReady", function (ev) {
+                      //   ev.editor.dataProcessor.writer.selfClosingEnd = ">";
+                      // });
+           
+                      
+
+                      // const editor = CKEDITOR.replace("post", {
+                      //   fullPage: false,
+                      //   allowedContent: true,
+                      //   autoGrow_onStartup: true,
+                      //   enterMode: CKEDITOR.ENTER_BR,
+                      //   on: {
+                      //     instanceReady: function (evt) {
+                      //       var dt = evt.post.getData();
+                      //       console.log(">>>>>>>>44444444444444.", dt);
+
+                            //   editor.filter.check("h1"); // -> false
+                            //   editor.setData(
+                            //     '<h1><i>Foo</i></h1><p class="left"><span>Bar</span> <a href="http://foo.bar">foo</a></p>'
+                            //   );
+                            // },
+                      //     },
+                      //   },
+                      // });
+
+                    
+                      // Example usage
+
+                      var editor1 = editor.instances.post; // Replace 'editor1' with your editor instance name
+                      var content = editor.getData(); 
+                      console.log("asdf",content);// Get the editor content
+
+                      // console.log("edata==>", extractContent(edata));
+
+                      // document.getElementById("post").innerHTML =
+                      //   extractContent(edata);
+                      // var regex = /(<([^>]+)>)/gi;
+
+                      // // Update wire:model value.
+                      // const newdata = edata.replace(regex, "");
+                      //   'h1 h2 h3 p blockquote strong em;' +
+
+                      // console.log("newdata", newdata);
+
+                      // for (var i = 0; i < edata.length; i++) {
+
+                      // }
+
+                      // this.set("post", event.editor.getData()); -->
+                    <!-- // </script> -->
                     <!-- script -->
+                    <!-- <script type="text/javascript"> -->
+                    <!-- // const editorOutput =
+                      //   document.getElementById("post");
+
+                      // // Function to remove formatting tags from CKEditor content
+                      // function removeFormatting(element) {
+                      //   for (const node of element.childNodes) {
+                      //     if (node.nodeType === Node.TEXT_NODE) {
+                      //       editorOutput.appendChild(node.cloneNode(true));
+                      //     } else if (node.nodeType === Node.ELEMENT_NODE) {
+                      //       if (node.nodeName !== "SCRIPT") {
+                      //         // Skip script elements
+                      //         removeFormatting(node); // Recursively remove formatting from child nodes
+                      //       }
+                      //     }
+                      //   }
+                      // }
+
+                      // // Call the function to remove formatting from CKEditor content
+                      // removeFormatting(editorOutput); -->
+                    <!-- </script> -->
                   </div>
                 </div>
 

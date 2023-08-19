@@ -1727,11 +1727,15 @@ routes.post(
 );
 
 routes.post("/add-blog-details", upload.single("Photo"), (req, res) => {
+//  const edata = event.editor.document.getBody().getText() ;
+//  console.log(">>>>>>>>>>",req.body)
+ 
   if (!req.file) {
     Blogdetail.create({
       name: req.body.name,
       //     Photo: URL + req.file.filename,
       post: req.body.post,
+      
     });
     try {
       // const data=  Blogdetail.create(req.body)
